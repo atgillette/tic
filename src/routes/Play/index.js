@@ -66,14 +66,15 @@ export const Play = ({ dispatch, game }) => {
   const cellIndices = [...Array(boardCellNumber).keys()];
 
   const drawRow = (row) => {
-    const center = cellIndices.map(ind => row[ind] || ' ')
-      .join(' | ');
-    return `| ${ center } |`;
+    const cells = cellIndices.map(ind => <td key={ ind }>{ row[ind] }</td> || <td></td>);
+    return cells;
   };
 
   const verticalBorder = cellIndices.reduce((string) => string.concat('----'), '-')
-  const rowHTML = [verticalBorder, ...board.map(drawRow), verticalBorder]
-    .map((row, ind) => <p key={ ind }>{ row }</p>);
+  const rowHTML = board.map(drawRow)
+    .map((row, ind) => <tr key={ ind }>{ row }</tr>);
+
+  console.log(rowHTML);
 
   const hasWinner = checkForWinner(board);
 
@@ -94,9 +95,11 @@ export const Play = ({ dispatch, game }) => {
         }
 
 
-        <div>
-          { rowHTML }
-        </div>
+        <table>
+          <tbody>
+            { rowHTML }
+          </tbody>
+        </table>
 
         <div>
           Select a row:
