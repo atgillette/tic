@@ -9,12 +9,12 @@ import './Play.scss';
 export const Play = ({ dispatch, game }) => {
   const { board, players } = game;
 
-  const [row, setRow] = useState(null);
-  const [column, setColumn] = useState(null);
+  const [row, setRow] = useState('');
+  const [column, setColumn] = useState('');
 
   const submitMove = () => {
-    if (row && column) {
-      dispatch(move(row, column));
+    if (row.trim() !== '' && !isNaN(row) && column.trim() !== '' && !isNaN(column)) {
+      dispatch(move(Number(row), Number(column)));
     } else {
       alert('You need to pick a row and column before you can move!');
     }
@@ -47,8 +47,9 @@ export const Play = ({ dispatch, game }) => {
           Select a row:
           <select
             value={ row }
-            onChange={ ({ target }) => { setRow(Number(target.value)); } }
+            onChange={ ({ target }) => { setRow(target.value); } }
           >
+            <option value="" disabled>Please make a row selection</option>
             {
               cellIndices.map(ind => (
                 <option value={ ind } key={ ind } >{ ind }</option>
@@ -61,8 +62,9 @@ export const Play = ({ dispatch, game }) => {
           Select a column:
           <select
             value={ column }
-            onChange={ ({ target }) => { setColumn(Number(target.value)); } }
+            onChange={ ({ target }) => { setColumn(target.value); } }
           >
+            <option value="" disabled>Please make a column selection</option>
             {
               cellIndices.map(ind => (
                 <option value={ ind } key={ ind } >{ ind }</option>
