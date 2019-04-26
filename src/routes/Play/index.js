@@ -86,7 +86,7 @@ export const Play = ({ dispatch, game }) => {
         {
           hasWinner
               ? (
-                  <p>{ `${ players[(game.currentPlayerIndex + 1) % 2] } is the winner!!!` }</p>
+                  <p id="winner-text">{ `${ players[(game.currentPlayerIndex + 1) % 2] } is the winner!!!` }</p>
               )
               : (
                   <p>{ `${ players[game.currentPlayerIndex] }'s turn` }</p>
