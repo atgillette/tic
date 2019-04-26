@@ -14,6 +14,24 @@ window.alert = () => {};
 
 describe('Play', () => {
   describe('Move submission', () => {
+    it('dispatches when 0 is selected for row and column', () => {
+      const dispatch = spy();
+      const component = shallow(<Play dispatch={ dispatch } game={ gameInit() } />);
+
+      const selects = component.find('select');
+
+      selects.first().simulate('change', { target: { value: '0' } });
+      selects.last().simulate('change', { target: { value: '0' } });
+
+      const input = component.find('input')
+      input.simulate('click')
+      expect(dispatch.lastCall.args[0]).toEqual({
+        type: 'MOVE',
+        row: 0,
+        column: 0
+      });
+    });
+
     it('dispatches the appropriate action to the store', () => {
       const dispatch = spy();
       const component = shallow(<Play dispatch={ dispatch } game={ gameInit() } />);
