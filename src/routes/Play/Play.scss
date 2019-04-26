@@ -7,6 +7,9 @@
 
   > div {
     margin-top: -40rem;
+    width: 100%;
+    text-align: center;
+
     // media queries
     @include breakpoint($desktop-lg) {
       margin-top: -20rem;
@@ -14,6 +17,11 @@
     @include breakpoint($mobile-lg) {
       margin-top: -10rem;
     }
+  }
+
+  table {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   td {

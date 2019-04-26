@@ -81,27 +81,27 @@ export const Play = ({ dispatch, game }) => {
   return (
 
     <CoreLayout className="game__container">
-      <div>
+      <div className="pt4">
         <h2>{ players[0] } vs. { players[1] }</h2>
 
         {
           hasWinner
               ? (
-                  <p id="winner-text">{ `${ players[(game.currentPlayerIndex + 1) % 2] } is the winner!!!` }</p>
+                  <p id="winner-text" className="mt4">{ `${ players[(game.currentPlayerIndex + 1) % 2] } is the winner!!!` }</p>
               )
               : (
-                  <p>{ `${ players[game.currentPlayerIndex] }'s turn` }</p>
+                  <p className="mt4">{ `${ players[game.currentPlayerIndex] }'s turn` }</p>
               )
         }
 
 
-        <table>
+        <table className="mt4">
           <tbody>
             { rowHTML }
           </tbody>
         </table>
 
-        <div>
+        <div className="mt4">
           Select a row:
           <select
             value={ row }
@@ -116,7 +116,7 @@ export const Play = ({ dispatch, game }) => {
           </select>
         </div>
 
-        <div>
+        <div className="mt1">
           Select a column:
           <select
             value={ column }
@@ -132,7 +132,7 @@ export const Play = ({ dispatch, game }) => {
         </div>
 
         <input
-          className="submit"
+          className="btn submit m3"
           type="submit"
           disabled={hasWinner}
           onClick={ () => { submitMove(); } }
